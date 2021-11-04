@@ -12,10 +12,8 @@
 -- Yb,_,d88b,,_   ,d8b,  ,d8b,,8'_   8) ,d8     I8,
 --  "Y8P"  "Y888888P'"Y88P"`Y8P' "YY8P8P88P     `Y8
 --
-
 -- This is a starter colorscheme for use with Lush,
 -- for usage guides, see :h lush or :LushRunTutorial
-
 --
 -- Note: Because this is lua file, vim will append your file to the runtime,
 --       which means you can require(...) it in other lua code (this is useful),
@@ -33,7 +31,6 @@
 --
 --       With that caveat out of the way...
 --
-
 -- Enable lush.ify on this file, run:
 --
 --  `:Lushify`
@@ -41,26 +38,267 @@
 --  or
 --
 --  `:lua require('lush').ify()`
-
-local lush = require('lush')
+local lush = require("lush")
 local hsl = lush.hsl
+
+local colors = {
+  bg = hsl("#282828"),
+  blue = hsl("#b3deef"),
+  blue1 = hsl("#b3deef"),
+  blue2 = hsl("#73cef4"),
+  blue3 = hsl("#44778d"),
+  blue4 = hsl("#335261"),
+  darker = hsl("#1d1d1d"),
+  darkest = hsl("#040404"),
+  gandalf = hsl("#bbbbbb"),
+  green = hsl("#c9d05c"),
+  green1 = hsl("#c9d05c"),
+  green2 = hsl("#9faa00"),
+  green3 = hsl("#6a6b3f"),
+  green4 = hsl("#464632"),
+  grey = hsl("#999999"),
+  grey1 = hsl("#999999"),
+  grey2 = hsl("#666666"),
+  grey3 = hsl("#444444"),
+  highlighted = hsl("#ffffff"),
+  red = hsl("#f43753"),
+  red1 = hsl("#f43753"),
+  red2 = hsl("#c5152f"),
+  red3 = hsl("#79313c"),
+  shadow = hsl("#323232"),
+  normal = hsl("#eeeeee"),
+  yellow = hsl("#d3b987"),
+  yellow1 = hsl("#d3b987"),
+  yellow2 = hsl("#ffc24b"),
+  yellow3 = hsl("#715b2f"),
+  purple1 = hsl("#9a4dff"),
+  purple2 = hsl("#6e00ff"),
+  purple3 = hsl("#400094"),
+}
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
 ---@diagnostic disable: undefined-global
 local theme = lush(function()
   return {
-    -- The following are all the Neovim default highlight groups from the docs
-    -- as of 0.5.0-nightly-446, to aid your theme creation. Your themes should
-    -- probably style all of these at a bare minimum.
-    --
-    -- Referenced/linked groups must come before being referenced/lined,
-    -- so the order shown ((mostly) alphabetical) is likely
-    -- not the order you will end up with.
-    --
-    -- You can uncomment these and leave them empty to disable any
-    -- styling for that group (meaning they mostly get styled as Normal)
-    -- or leave them commented to apply vims default colouring or linking.
+    Boolean {
+      fg = hsl("#ff8787"),
+    },
+    Character {
+      fg = hsl("#ffc24b"),
+    },
+    ColorColumn {
+      bg = hsl("#323232"),
+    },
+    Comment {
+      fg = hsl("#666666"),
+    },
+    Conditional {
+      fg = hsl("#c9d05c"),
+    },
+    Constant {
+      fg = hsl("#ffc24b"),
+    },
+    CursorColumn {
+      bg = hsl("#323232"),
+    },
+    Directory {
+      fg = hsl("#afd7ff"),
+    },
+    Error {
+      fg = hsl("#eeeeee"),
+      bg = hsl("#f43753"),
+    },
+    Exception {
+      fg = hsl("#f43753"),
+    },
+    ErrorMsg {
+      fg = Exception.fg.lighten(20),
+    },
+    Float {
+      fg = hsl("#5faf5f"),
+    },
+    FoldColumn {
+      fg = hsl("#666666"),
+      bg = hsl("#1d1d1d"),
+    },
+    Folded {
+      fg = hsl("#666666"),
+      bg = hsl("#1d1d1d"),
+    },
+    Identifier {
+      fg = hsl("#afd7ff"),
+    },
+    Keyword {
+      fg = hsl("#c9d05c"),
+    },
+    NonText {
+      fg = hsl("#444444"),
+    },
+    Normal {
+      fg = hsl("#eeeeee"),
+      bg = hsl("#282828"),
+    },
+    Number {
+      fg = hsl("#5fafd7"),
+    },
+    Operator {
+      fg = hsl("#999999"),
+    },
+    PreProc {
+      fg = hsl("#c9d05c"),
+    },
+    Question {
+      fg = hsl("#c9d05c"),
+    },
+    SpecialComment {
+      fg = hsl("#8a8a8a"),
+    },
+    Special {
+      fg = hsl("#5fd7ff"),
+    },
+    SpecialKey {
+      fg = hsl("#444444"),
+    },
+    SpellBad {
+      fg = hsl("#ff8700"),
+    },
+    SpellCap {
+      fg = hsl("#ffc24b"),
+    },
+    SpellLocal {
+      fg = hsl("#d3b987"),
+    },
+    SpellRare {
+      fg = hsl("#5fd7ff"),
+    },
+    Statement {
+      fg = hsl("#afd7ff"),
+    },
+    StatusLine {
+      fg = hsl("#1d1d1d"),
+      bg = Comment.fg.darken(40),
+    },
+    StatusLineNC {
+      fg = hsl("#999999"),
+      bg = hsl("#444444"),
+    },
+    String {
+      fg = hsl("#d3b987"),
+    },
+    TabLineFill {
+      bg = hsl("#444444"),
+    },
+    TabLine {
+      fg = hsl("#999999"),
+      bg = hsl("#444444"),
+    },
+    TabLineSel {
+      fg = hsl("#c9d05c"),
+    },
+    Title {
+      fg = hsl("#afd7ff"),
+    },
+    Todo {
+      fg = hsl("#f43753"),
+    },
+    TSField {
+      fg = hsl("#afd7ff"),
+    },
+    TSFuncMacro {
+      fg = hsl("#00afff"),
+    },
+    TSNote {
+      fg = hsl("#ffd700"),
+    },
+    TSParameter {
+      fg = hsl("#ffc24b"),
+    },
+    TSPunctBracket {
+      fg = hsl("#999999"),
+    },
+    TSSymbol {
+      fg = hsl("#ffaf5f"),
+    },
+    TSWarning {
+      fg = hsl("#ffaf5f"),
+    },
+    Type {
+      fg = hsl("#5fd7ff"),
+    },
+    Underlined {
+      gui = "underline",
+    },
+    Variable {
+      fg = hsl("#eeeeee"),
+      bg = hsl("#282828"),
+    },
+    VertSplit {
+      fg = colors.shadow,
+      bg = colors.shadow,
+    },
+    WarningMsg {
+      fg = hsl("#f43753"),
+    },
+    WildMenu {
+      fg = hsl("#282828"),
+      bg = hsl("#c9d05c"),
+    },
+    SignColumn {
+      fg = hsl("#eeeeee"),
+      bg = hsl("#282828"),
+    },
+    DiffAdd {
+      fg = hsl("#87d700"),
+    },
+    DiffChange {
+      fg = hsl("#ff8700"),
+    },
+    DiffDelete {
+      fg = hsl("#f43753"),
+    },
+    CursorLine {
+      bg = hsl("#3a3a3a"),
+    },
+    CursorLineNr {
+      fg = hsl("#5fd7ff"),
+      bg = "NONE",
+    },
+    LineNr {
+      fg = hsl("#6c6c6c"),
+      bg = "NONE",
+    },
+    PMenu {
+      fg = hsl("#d0d0d0"),
+      bg = hsl("#303030"),
+    },
+    PMenuSel {
+      fg = hsl("#87d7ff"),
+      bg = hsl("#4e4e4e"),
+    },
+    PmenuThumb {
+      bg = hsl("#3a3a3a"),
+    },
+    PmenuSbar {
+      bg = hsl("#3a3a3a"),
+    },
+    Visual {
+      bg = hsl("#4e4e4e"),
+    },
+    VisualNOS {
+      bg = hsl("#4e4e4e"),
+    },
+    MatchParen {
+      gui = "underline,bold",
+    },
+    IncSearch {
+      bg = Normal.fg.darken(70),
+      gui = "underline,bold",
+    },
+    Search {
+      bg = Normal.fg.darken(70),
+      gui = IncSearch.gui,
+    },
 
     -- Comment      { }, -- any comment
     -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
@@ -93,7 +331,7 @@ local theme = lush(function()
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg      { }, -- |more-prompt|
     -- NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    -- Normal       { }, -- normal text
+    -- Normal { }, -- normal text
     -- NormalFloat  { }, -- Normal text in floating windows.
     -- NormalNC     { }, -- normal text in non-current windows
     -- Pmenu        { }, -- Popup menu: normal item.
@@ -108,7 +346,7 @@ local theme = lush(function()
     -- SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     -- SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    -- StatusLine   { }, -- status line of current window
+    -- StatusLine {}, -- status line of current window
     -- StatusLineNC { }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     -- TabLine      { }, -- tab pages line, not active tab page label
     -- TabLineFill  { }, -- tab pages line, where there are no labels
@@ -241,7 +479,7 @@ local theme = lush(function()
     -- TSNumber             { };    -- For all numbers
     -- TSOperator           { };    -- For any operator: `+`, but also `->` and `*` in C.
     -- TSParameter          { };    -- For parameters of a function.
-    -- TSParameterReference { };    -- For references to parameters of a function.
+    -- TSParameterReference { fg = };    -- For references to parameters of a function.
     -- TSProperty           { };    -- Same as `TSField`.
     -- TSPunctDelimiter     { };    -- For delimiters ie: `.`
     -- TSPunctBracket       { };    -- For brackets and parens.
