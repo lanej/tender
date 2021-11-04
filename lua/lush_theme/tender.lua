@@ -41,40 +41,7 @@
 local lush = require("lush")
 local hsl = lush.hsl
 
-local colors = {
-  bg = hsl("#282828"),
-  blue = hsl("#b3deef"),
-  blue1 = hsl("#b3deef"),
-  blue2 = hsl("#73cef4"),
-  blue3 = hsl("#44778d"),
-  blue4 = hsl("#335261"),
-  darker = hsl("#1d1d1d"),
-  darkest = hsl("#040404"),
-  gandalf = hsl("#bbbbbb"),
-  green = hsl("#c9d05c"),
-  green1 = hsl("#c9d05c"),
-  green2 = hsl("#9faa00"),
-  green3 = hsl("#6a6b3f"),
-  green4 = hsl("#464632"),
-  grey = hsl("#999999"),
-  grey1 = hsl("#999999"),
-  grey2 = hsl("#666666"),
-  grey3 = hsl("#444444"),
-  highlighted = hsl("#ffffff"),
-  red = hsl("#f43753"),
-  red1 = hsl("#f43753"),
-  red2 = hsl("#c5152f"),
-  red3 = hsl("#79313c"),
-  shadow = hsl("#323232"),
-  normal = hsl("#eeeeee"),
-  yellow = hsl("#d3b987"),
-  yellow1 = hsl("#d3b987"),
-  yellow2 = hsl("#ffc24b"),
-  yellow3 = hsl("#715b2f"),
-  purple1 = hsl("#9a4dff"),
-  purple2 = hsl("#6e00ff"),
-  purple3 = hsl("#400094"),
-}
+local colors = require("lua.lush_theme.colors")
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -83,9 +50,6 @@ local theme = lush(function()
   return {
     Boolean {
       fg = hsl("#ff8787"),
-    },
-    Character {
-      fg = hsl("#ffc24b"),
     },
     ColorColumn {
       bg = hsl("#323232"),
@@ -97,7 +61,7 @@ local theme = lush(function()
       fg = hsl("#c9d05c"),
     },
     Constant {
-      fg = hsl("#ffc24b"),
+      fg = colors.orange,
     },
     CursorColumn {
       bg = hsl("#323232"),
@@ -176,8 +140,8 @@ local theme = lush(function()
       fg = hsl("#afd7ff"),
     },
     StatusLine {
-      fg = hsl("#1d1d1d"),
-      bg = Comment.fg.darken(40),
+      fg = Normal.fg,
+      bg = colors.bg.darken(40),
     },
     StatusLineNC {
       fg = hsl("#999999"),
@@ -185,16 +149,6 @@ local theme = lush(function()
     },
     String {
       fg = hsl("#d3b987"),
-    },
-    TabLineFill {
-      bg = hsl("#444444"),
-    },
-    TabLine {
-      fg = hsl("#999999"),
-      bg = hsl("#444444"),
-    },
-    TabLineSel {
-      fg = hsl("#c9d05c"),
     },
     Title {
       fg = hsl("#afd7ff"),
@@ -249,13 +203,40 @@ local theme = lush(function()
       bg = hsl("#282828"),
     },
     DiffAdd {
-      fg = hsl("#87d700"),
+      fg = hsl("#87d700").lighten(20),
     },
     DiffChange {
       fg = hsl("#ff8700"),
     },
     DiffDelete {
       fg = hsl("#f43753"),
+    },
+    diffAdded { DiffAdd },
+    diffRemoved { DiffDelete },
+    diffChanged { DiffChange },
+    GitSignsAdd {
+      fg = DiffAdd.fg.lighten(20),
+    },
+    GitSignsChange {
+      fg = DiffChange.fg.lighten(20),
+    },
+    GitSignsDelete {
+      fg = DiffDelete.fg.lighten(20),
+    },
+    -- GitSignsAddLn {},
+    -- GitSignsAddNr {},
+    -- GitSignsChangeLn {},
+    -- GitSignsChangeNr {},
+    -- GitSignsDeleteLn {},
+    -- GitSignsDeleteNr {},
+    fugitiveUnstagedModifier { Boolean },
+    fugitiveSection { Normal },
+    fugitiveStagedModifier {
+      fg = DiffAdd.fg.lighten(30),
+    },
+    fugitiveHash {
+      fg = Normal.fg.darken(20),
+      bg = colors.bg,
     },
     CursorLine {
       bg = hsl("#3a3a3a"),
@@ -268,19 +249,14 @@ local theme = lush(function()
       fg = hsl("#6c6c6c"),
       bg = "NONE",
     },
-    PMenu {
-      fg = hsl("#d0d0d0"),
+    Pmenu {
+      fg = colors.normal,
       bg = hsl("#303030"),
     },
-    PMenuSel {
-      fg = hsl("#87d7ff"),
-      bg = hsl("#4e4e4e"),
-    },
-    PmenuThumb {
-      bg = hsl("#3a3a3a"),
-    },
-    PmenuSbar {
-      bg = hsl("#3a3a3a"),
+    PmenuSel {
+      fg = colors.teal,
+      bg = Pmenu.bg.lighten(20),
+      gui = "underline",
     },
     Visual {
       bg = hsl("#4e4e4e"),
@@ -292,11 +268,11 @@ local theme = lush(function()
       gui = "underline,bold",
     },
     IncSearch {
-      bg = Normal.fg.darken(70),
+      bg = Visual.bg,
       gui = "underline,bold",
     },
     Search {
-      bg = Normal.fg.darken(70),
+      bg = Visual.bg,
       gui = IncSearch.gui,
     },
 
@@ -348,14 +324,21 @@ local theme = lush(function()
     -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     -- StatusLine {}, -- status line of current window
     -- StatusLineNC { }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    -- TabLine      { }, -- tab pages line, not active tab page label
-    -- TabLineFill  { }, -- tab pages line, where there are no labels
+    TabLine {
+      fg = StatusLine.fg,
+      bg = colors.bg,
+    }, -- tab pages line, not active tab page label
+    TabLineFill {
+      bg = colors.bg.darken(20),
+    }, -- tab pages line, where there are no labels
     -- TabLineSel   { }, -- tab pages line, active tab page label
     -- Title        { }, -- titles for output from ":set all", ":autocmd" etc.
     -- Visual       { }, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
     -- WarningMsg   { }, -- warning messages
-    -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    Whitespace {
+      fg = Exception.fg.darken(20),
+    }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     -- WildMenu     { }, -- current match in 'wildmenu' completion
 
     -- These groups are not listed as default vim groups,
@@ -366,7 +349,9 @@ local theme = lush(function()
 
     -- Constant       { }, -- (preferred) any constant
     -- String         { }, --   a string constant: "this is a string"
-    -- Character      { }, --  a character constant: 'c', '\n'
+    Character {
+      fg = String.fg.darken(40),
+    }, --  a character constant: 'c', '\n'
     -- Number         { }, --   a number constant: 234, 0xff
     -- Boolean        { }, --  a boolean constant: TRUE, false
     -- Float          { }, --    a floating point constant: 2.3e10
