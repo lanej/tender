@@ -122,7 +122,7 @@ local theme = lush(function()
       fg = hsl("#444444"),
     },
     SpellBad {
-      fg = hsl("#ff8700"),
+      gui = "underline",
     },
     SpellCap {
       fg = hsl("#ffc24b"),
@@ -220,17 +220,40 @@ local theme = lush(function()
     diffAdded { GitSignsAdd },
     diffRemoved { GitSignsDelete },
     diffChanged { GitSignsChange },
+    gitCommitSelectedType {
+      fg = DiffAdd.fg.darken(30),
+    },
+    gitCommitSelectedFile {
+      fg = DiffAdd.fg.lighten(20),
+    },
+    gitcommitFirstLine { Normal },
+    gitcommitOverflow { Comment },
+    gitcommitDiscardedType { DiffDelete },
+    gitcommitDiscardedFile {
+      fg = DiffDelete.fg.lighten(20),
+    },
+    gitcommitSummary { Normal },
     -- GitSignsAddLn {},
     -- GitSignsAddNr {},
     -- GitSignsChangeLn {},
     -- GitSignsChangeNr {},
     -- GitSignsDeleteLn {},
     -- GitSignsDeleteNr {},
-    fugitiveUnstagedModifier { Boolean },
-    fugitiveSection { Normal },
-    fugitiveStagedModifier {
-      fg = DiffAdd.fg.lighten(30),
+    fugitiveUnstagedModifier { gitcommitDiscardedType },
+    fugitiveStagedModifier { gitCommitSelectedType },
+    HopNextKey {
+      fg = colors.purple,
+      bg = colors.bg.lighten(10),
     },
+    HopNextKey1 {
+      fg = colors.purple1,
+    },
+    HopNextKey2 {
+      fg = HopNextKey1.fg.darken(20),
+    },
+    HopUnmatched { Comment },
+    HopCursor {},
+    fugitiveSection { Normal },
     fugitiveHash {
       fg = Normal.fg.darken(20),
       bg = colors.bg,
@@ -329,7 +352,7 @@ local theme = lush(function()
     -- StatusLine {}, -- status line of current window
     -- StatusLineNC { }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine {
-      fg = StatusLine.fg,
+      fg = Normal.fg,
       bg = colors.bg,
     }, -- tab pages line, not active tab page label
     TabLineFill {
