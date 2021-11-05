@@ -138,7 +138,7 @@ local theme = lush(function()
     },
     StatusLine {
       fg = Normal.fg,
-      bg = hsl("#444444"),
+      bg = colors.bg,
     },
     StatusLineNC {
       fg = hsl("#444444"),
@@ -151,10 +151,13 @@ local theme = lush(function()
       fg = hsl("#afd7ff"),
     },
     TSField {
-      fg = hsl("#afd7ff"),
+      fg = Title.fg.darken(10),
+    },
+    TSFunction {
+      fg = hsl("#00afff").lighten(10),
     },
     TSFuncMacro {
-      fg = hsl("#00afff"),
+      fg = hsl("#00afff").darken(10),
     },
     TSNote {
       fg = hsl("#ffd700"),
@@ -244,13 +247,13 @@ local theme = lush(function()
       bg = "NONE",
     },
     Pmenu {
-      fg = colors.normal,
-      bg = hsl("#303030"),
+      fg = colors.normal.darken(10),
+      bg = colors.bg.lighten(10),
     },
     PmenuSel {
-      fg = colors.teal,
+      fg = colors.fg,
       bg = Pmenu.bg.lighten(20),
-      gui = "underline",
+      gui = "bold",
     },
     Visual {
       bg = hsl("#4e4e4e"),
@@ -483,7 +486,7 @@ local theme = lush(function()
     -- TSSymbol             { };    -- For identifiers referring to symbols or atoms.
     -- TSType               { };    -- For types.
     -- TSTypeBuiltin        { };    -- For builtin types.
-    -- TSVariable           { };    -- Any variable name that does not have another highlight.
+    -- TSVariable { }, -- Any variable name that does not have another highlight.
     -- TSVariableBuiltin    { };    -- Variable names that are defined by the languages, like `this` or `self`.
 
     -- TSTag                { };    -- Tags like html tag names.
