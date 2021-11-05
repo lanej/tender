@@ -41,7 +41,7 @@
 local lush = require("lush")
 local hsl = lush.hsl
 
-local colors = require("lua.colors")
+local colors = require("tender.colors")
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -138,10 +138,10 @@ local theme = lush(function()
     },
     StatusLine {
       fg = Normal.fg,
-      bg = colors.bg.darken(40),
+      bg = hsl("#444444"),
     },
     StatusLineNC {
-      fg = hsl("#999999"),
+      fg = hsl("#444444"),
       bg = hsl("#444444"),
     },
     String {
@@ -407,17 +407,19 @@ local theme = lush(function()
 
     LspDiagnosticsDefaultError { Error }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultWarning { TSWarning }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultInformation {}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultHint {}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultInformation { Normal }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultHint {
+      fg = colors.teal,
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     ALEError { LspDiagnosticsDefaultError },
     ALEWarning { LspDiagnosticsDefaultWarning },
     ALEErrorSign { LspDiagnosticsDefaultError },
     ALEWarningSign { LspDiagnosticsDefaultWarning },
 
-    -- LspDiagnosticsVirtualTextError       { }, -- Used for "Error" diagnostic virtual text
-    -- LspDiagnosticsVirtualTextWarning     { }, -- Used for "Warning" diagnostic virtual text
-    -- LspDiagnosticsVirtualTextInformation { }, -- Used for "Information" diagnostic virtual text
-    -- LspDiagnosticsVirtualTextHint        { }, -- Used for "Hint" diagnostic virtual text
+    -- LspDiagnosticsVirtualTextError {}, -- Used for "Error" diagnostic virtual text
+    -- LspDiagnosticsVirtualTextWarning {}, -- Used for "Warning" diagnostic virtual text
+    -- LspDiagnosticsVirtualTextInformation {}, -- Used for "Information" diagnostic virtual text
+    -- LspDiagnosticsVirtualTextHint {}, -- Used for "Hint" diagnostic virtual text
 
     -- LspDiagnosticsUnderlineError         { }, -- Used to underline "Error" diagnostics
     -- LspDiagnosticsUnderlineWarning       { }, -- Used to underline "Warning" diagnostics

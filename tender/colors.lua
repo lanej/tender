@@ -1,7 +1,9 @@
 local lush = require("lush")
 local hsl = lush.hsl
 
-local colors = {
+local colors = {}
+
+colors = {
   bg = hsl("#282828"),
   blue = hsl("#b3deef"),
   blue1 = hsl("#b3deef"),
@@ -28,17 +30,24 @@ local colors = {
   red3 = hsl("#79313c"),
   shadow = hsl("#323232"),
   teal = hsl("#1abc9c"),
+  fg = hsl("#eeeeee"),
   normal = hsl("#eeeeee"),
   orange = hsl("#ff8000"),
   yellow = hsl("#d3b987"),
   yellow1 = hsl("#d3b987"),
   yellow2 = hsl("#ffc24b"),
   yellow3 = hsl("#715b2f"),
+  purple = hsl("#a866ff"),
   purple1 = hsl("#a866ff"),
   purple2 = hsl("#6e00ff"),
   purple3 = hsl("#400094"),
   magenta = hsl("#bb9af7"),
   magenta2 = hsl("#ff007c"),
+  diff = {
+    add = hsl("#c9d05c"),
+    change = hsl("#ff8000"),
+    delete = hsl("#f43753"),
+  },
 }
 
 return colors
