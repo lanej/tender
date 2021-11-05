@@ -41,7 +41,7 @@
 local lush = require("lush")
 local hsl = lush.hsl
 
-local colors = require("lua.lush_theme.colors")
+local colors = require("lua.colors")
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -69,16 +69,13 @@ local theme = lush(function()
     Directory {
       fg = hsl("#afd7ff"),
     },
-    Error {
-      fg = hsl("#eeeeee"),
-      bg = hsl("#f43753"),
-    },
     Exception {
       fg = hsl("#f43753"),
     },
     ErrorMsg {
       fg = Exception.fg.lighten(20),
     },
+    Error { Exception },
     Float {
       fg = hsl("#5faf5f"),
     },
@@ -153,9 +150,6 @@ local theme = lush(function()
     Title {
       fg = hsl("#afd7ff"),
     },
-    Todo {
-      fg = hsl("#f43753"),
-    },
     TSField {
       fg = hsl("#afd7ff"),
     },
@@ -211,9 +205,6 @@ local theme = lush(function()
     DiffDelete {
       fg = hsl("#f43753"),
     },
-    diffAdded { DiffAdd },
-    diffRemoved { DiffDelete },
-    diffChanged { DiffChange },
     GitSignsAdd {
       fg = DiffAdd.fg.lighten(20),
     },
@@ -223,6 +214,9 @@ local theme = lush(function()
     GitSignsDelete {
       fg = DiffDelete.fg.lighten(20),
     },
+    diffAdded { GitSignsAdd },
+    diffRemoved { GitSignsDelete },
+    diffChanged { GitSignsChange },
     -- GitSignsAddLn {},
     -- GitSignsAddNr {},
     -- GitSignsChangeLn {},
@@ -275,6 +269,13 @@ local theme = lush(function()
       bg = Visual.bg,
       gui = IncSearch.gui,
     },
+    IndentBlanklineContextChar {
+      fg = CursorLineNr.fg.lighten(40),
+    },
+    IndentBlanklineChar {
+      fg = Comment.fg.darken(20),
+    },
+    IndentBlanklineSpaceChar { Comment },
 
     -- Comment      { }, -- any comment
     -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
@@ -394,7 +395,7 @@ local theme = lush(function()
 
     -- Error          { }, -- (preferred) any erroneous construct
 
-    -- Todo           { }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    -- Todo {  }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
@@ -404,10 +405,14 @@ local theme = lush(function()
     -- LspReferenceRead                     { }, -- used for highlighting "read" references
     -- LspReferenceWrite                    { }, -- used for highlighting "write" references
 
-    -- LspDiagnosticsDefaultError           { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    -- LspDiagnosticsDefaultWarning         { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    -- LspDiagnosticsDefaultInformation     { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    -- LspDiagnosticsDefaultHint            { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultError { Error }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultWarning { TSWarning }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultInformation {}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultHint {}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    ALEError { LspDiagnosticsDefaultError },
+    ALEWarning { LspDiagnosticsDefaultWarning },
+    ALEErrorSign { LspDiagnosticsDefaultError },
+    ALEWarningSign { LspDiagnosticsDefaultWarning },
 
     -- LspDiagnosticsVirtualTextError       { }, -- Used for "Error" diagnostic virtual text
     -- LspDiagnosticsVirtualTextWarning     { }, -- Used for "Warning" diagnostic virtual text
