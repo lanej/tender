@@ -227,7 +227,7 @@ local theme = lush(function()
       fg = DiffAdd.fg.lighten(20),
     },
     gitcommitFirstLine { Normal },
-    gitcommitOverflow { Comment },
+    gitcommitOverflow { fg = Comment.fg.lighten(30) },
     gitcommitDiscardedType { DiffDelete },
     gitcommitDiscardedFile {
       fg = DiffDelete.fg.lighten(20),
