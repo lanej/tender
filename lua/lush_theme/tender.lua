@@ -75,7 +75,9 @@ local theme = lush(function()
     ErrorMsg {
       fg = Exception.fg.lighten(20),
     },
-    Error { Exception },
+    Error {
+      Exception,
+    },
     Float {
       fg = hsl("#5faf5f"),
     },
@@ -120,9 +122,6 @@ local theme = lush(function()
     },
     SpecialKey {
       fg = hsl("#444444"),
-    },
-    SpellBad {
-      gui = "underline",
     },
     SpellCap {
       fg = hsl("#ffc24b"),
@@ -217,30 +216,48 @@ local theme = lush(function()
     GitSignsDelete {
       fg = DiffDelete.fg.lighten(20),
     },
-    diffAdded { GitSignsAdd },
-    diffRemoved { GitSignsDelete },
-    diffChanged { GitSignsChange },
+    diffAdded {
+      GitSignsAdd,
+    },
+    diffRemoved {
+      GitSignsDelete,
+    },
+    diffChanged {
+      GitSignsChange,
+    },
     gitCommitSelectedType {
       fg = DiffAdd.fg.darken(30),
     },
     gitCommitSelectedFile {
       fg = DiffAdd.fg.lighten(20),
     },
-    gitcommitFirstLine { Normal },
-    gitcommitOverflow { fg = Comment.fg.lighten(30) },
-    gitcommitDiscardedType { DiffDelete },
+    gitcommitFirstLine {
+      Normal,
+    },
+    gitcommitOverflow {
+      fg = Comment.fg.lighten(30),
+    },
+    gitcommitDiscardedType {
+      DiffDelete,
+    },
     gitcommitDiscardedFile {
       fg = DiffDelete.fg.lighten(20),
     },
-    gitcommitSummary { Normal },
+    gitcommitSummary {
+      Normal,
+    },
     -- GitSignsAddLn {},
     -- GitSignsAddNr {},
     -- GitSignsChangeLn {},
     -- GitSignsChangeNr {},
     -- GitSignsDeleteLn {},
     -- GitSignsDeleteNr {},
-    fugitiveUnstagedModifier { gitcommitDiscardedType },
-    fugitiveStagedModifier { gitCommitSelectedType },
+    fugitiveUnstagedModifier {
+      gitcommitDiscardedType,
+    },
+    fugitiveStagedModifier {
+      gitCommitSelectedType,
+    },
     HopNextKey {
       fg = colors.purple,
       bg = colors.bg.lighten(10),
@@ -251,9 +268,13 @@ local theme = lush(function()
     HopNextKey2 {
       fg = HopNextKey1.fg.darken(20),
     },
-    HopUnmatched { Comment },
+    HopUnmatched {
+      Comment,
+    },
     HopCursor {},
-    fugitiveSection { Normal },
+    fugitiveSection {
+      Normal,
+    },
     fugitiveHash {
       fg = Normal.fg.darken(20),
       bg = colors.bg,
@@ -301,7 +322,61 @@ local theme = lush(function()
     IndentBlanklineChar {
       fg = Comment.fg.darken(20),
     },
-    IndentBlanklineSpaceChar { Comment },
+    IndentBlanklineSpaceChar {
+      Comment,
+    },
+    LspDiagnosticsDefaultError {
+      fg = Error.fg,
+      gui = "bold",
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultWarning {
+      fg = TSWarning.fg,
+      gui = "bold",
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultInformation {
+      fg = Normal.fg,
+      gui = "bold",
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultHint {
+      fg = colors.teal,
+      gui = "bold",
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    DiagnosticError {
+      LspDiagnosticsDefaultError,
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    DiagnosticWarn {
+      LspDiagnosticsDefaultWarning,
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    DiagnosticInfo {
+      LspDiagnosticsDefaultInformation,
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    DiagnosticHint {
+      fg = colors.teal,
+    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    DiagnosticUnderlineError {
+      LspDiagnosticsDefaultError,
+    }, -- Used to underline "Error" diagnostics
+    DiagnosticUnderlineWarn {
+      LspDiagnosticsDefaultWarning,
+    }, -- Used to underline "Warning" diagnostics
+    DiagnosticUnderlineInfo {
+      LspDiagnosticsDefaultInfo,
+    }, -- Used to underline "Information" diagnostics
+    DiagnosticUnderlineHint {
+      LspDiagnosticsDefaultHint,
+    }, -- Used to underline "Hint" diagnostics
+    ALEError {
+      LspDiagnosticsDefaultError,
+    },
+    ALEWarning {
+      LspDiagnosticsDefaultWarning,
+    },
+    ALEErrorSign {
+      LspDiagnosticsDefaultError,
+    },
+    ALEWarningSign {
+      LspDiagnosticsDefaultWarning,
+    },
 
     -- Comment      { }, -- any comment
     -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
@@ -346,6 +421,9 @@ local theme = lush(function()
     -- Search       { }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
     -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
     -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
+    SpellBad {
+      gui = "bold",
+    },
     -- SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     -- SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
@@ -430,17 +508,6 @@ local theme = lush(function()
     -- LspReferenceText                     { }, -- used for highlighting "text" references
     -- LspReferenceRead                     { }, -- used for highlighting "read" references
     -- LspReferenceWrite                    { }, -- used for highlighting "write" references
-
-    LspDiagnosticsDefaultError { Error }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultWarning { TSWarning }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultInformation { Normal }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultHint {
-      fg = colors.teal,
-    }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    ALEError { LspDiagnosticsDefaultError },
-    ALEWarning { LspDiagnosticsDefaultWarning },
-    ALEErrorSign { LspDiagnosticsDefaultError },
-    ALEWarningSign { LspDiagnosticsDefaultWarning },
 
     -- LspDiagnosticsVirtualTextError {}, -- Used for "Error" diagnostic virtual text
     -- LspDiagnosticsVirtualTextWarning {}, -- Used for "Warning" diagnostic virtual text
