@@ -354,28 +354,28 @@ local theme = lush(function()
       fg = colors.teal,
     }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     DiagnosticUnderlineError {
-      LspDiagnosticsDefaultError,
+      DiagnosticError,
     }, -- Used to underline "Error" diagnostics
     DiagnosticUnderlineWarn {
-      LspDiagnosticsDefaultWarning,
+      DiagnosticWarn,
     }, -- Used to underline "Warning" diagnostics
     DiagnosticUnderlineInfo {
-      LspDiagnosticsDefaultInfo,
+      DiagnosticInfo,
     }, -- Used to underline "Information" diagnostics
     DiagnosticUnderlineHint {
-      LspDiagnosticsDefaultHint,
+      DiagnosticHint,
     }, -- Used to underline "Hint" diagnostics
     ALEError {
-      LspDiagnosticsDefaultError,
+      DiagnosticError,
     },
     ALEWarning {
-      LspDiagnosticsDefaultWarning,
+      DiagnosticWarn,
     },
     ALEErrorSign {
-      LspDiagnosticsDefaultError,
+      DiagnosticError,
     },
     ALEWarningSign {
-      LspDiagnosticsDefaultWarning,
+      DiagnosticWarn,
     },
 
     -- Comment      { }, -- any comment
@@ -420,7 +420,7 @@ local theme = lush(function()
     -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
     -- Search       { }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
     -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
-    -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
+    -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellBad {
       gui = "bold",
     },
