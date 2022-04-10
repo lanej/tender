@@ -259,17 +259,21 @@ local theme = lush(function()
       gitCommitSelectedType,
     },
     HopNextKey {
-      fg = colors.purple,
-      bg = colors.bg.lighten(10),
+      fg = TSFunction.fg,
+      gui = "underline",
     },
     HopNextKey1 {
-      fg = colors.purple1,
+      fg = HopNextKey.fg.darken(10),
+      bg = HopNextKey.bg,
+      gui = HopNextKey.gui,
     },
     HopNextKey2 {
-      fg = HopNextKey1.fg.darken(20),
+      fg = HopNextKey1.fg.darken(10),
+      bg = HopNextKey1.bg,
+      gui = HopNextKey1.gui,
     },
     HopUnmatched {
-      Comment,
+      fg = Comment.fg.lighten(20),
     },
     HopCursor {},
     fugitiveSection {
