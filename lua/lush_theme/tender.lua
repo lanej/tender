@@ -284,7 +284,7 @@ local theme = lush(function()
       bg = colors.bg,
     },
     CursorLine {
-      bg = hsl("#3a3a3a"),
+      bg = hsl("#323232"),
     },
     CursorLineNr {
       fg = hsl("#5fd7ff"),
