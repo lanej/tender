@@ -100,7 +100,7 @@ local theme = lush(function()
     },
     Normal {
       fg = hsl("#eeeeee"),
-      bg = hsl("#282828"),
+      bg = hsl("#262626"),
     },
     Number {
       fg = hsl("#5fafd7"),
