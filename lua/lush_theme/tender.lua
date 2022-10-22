@@ -348,6 +348,9 @@ local theme = lush(function(injected)
     String {
       fg = hsl("#d3b987"),
     },
+    TSLiteral {
+      fg = String.fg.darken(20),
+    },
     Title {
       fg = hsl("#afd7ff"),
     },
@@ -663,6 +666,16 @@ local theme = lush(function(injected)
     Character {
       fg = String.fg.darken(40),
     }, --  a character constant: 'c', '\n'
+    TSKeyword {
+      fg = Keyword.fg.darken(10),
+    },
+    TSKeywordFunction {
+      fg = Keyword.fg.darken(20),
+    },
+    TSKeywordReturn {
+      fg = Keyword.fg.darken(30),
+    },
+    TSParameterReference { fg = TSParameter.fg.darken(20) },
     -- Number         { }, --   a number constant: 234, 0xff
     -- Boolean        { }, --  a boolean constant: TRUE, false
     -- Float          { }, --    a floating point constant: 2.3e10
@@ -761,16 +774,12 @@ local theme = lush(function(injected)
     -- TSFuncBuiltin        { };    -- For builtin functions: `table.insert` in Lua.
     -- TSFuncMacro          { };    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
     -- TSInclude            { };    -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-    -- TSKeyword            { };    -- For keywords that don't fall in previous categories.
-    -- TSKeywordFunction    { };    -- For keywords used to define a fuction.
     -- TSLabel              { };    -- For labels: `label:` in C and `:label:` in Lua.
     -- TSMethod             { };    -- For method calls and definitions.
     -- TSNamespace          { };    -- For identifiers referring to modules and namespaces.
     -- TSNone               { };    -- TODO: docs
     -- TSNumber             { };    -- For all numbers
     -- TSOperator           { };    -- For any operator: `+`, but also `->` and `*` in C.
-    -- TSParameter          { };    -- For parameters of a function.
-    -- TSParameterReference { fg = };    -- For references to parameters of a function.
     -- TSProperty           { };    -- Same as `TSField`.
     -- TSPunctDelimiter     { };    -- For delimiters ie: `.`
     -- TSPunctBracket       { };    -- For brackets and parens.
