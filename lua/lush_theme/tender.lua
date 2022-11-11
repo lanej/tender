@@ -514,7 +514,8 @@ local theme = lush(function(injected)
       bg = hsl("#4e4e4e"),
     },
     MatchParen {
-      gui = "underline,bold",
+      fg = colors.highlighted,
+      bg = TSPunctBracket.fg.darken(20),
     },
     IncSearch {
       bg = Visual.bg,
