@@ -248,7 +248,6 @@ end
 ---@diagnostic disable: undefined-global
 local theme = lush(function(injected)
   local sym = injected.sym
-  print(sym)
   return {
     Boolean {
       fg = hsl("#ff8787"),
@@ -260,7 +259,7 @@ local theme = lush(function(injected)
       fg = hsl("#666666"),
     },
     Conditional {
-      fg = hsl("#c9d05c"),
+      fg = hsl("#d0c65c"),
     },
     Constant {
       fg = colors.orange,
@@ -673,7 +672,10 @@ local theme = lush(function(injected)
       fg = Keyword.fg.darken(20),
     },
     TSKeywordReturn {
-      fg = Keyword.fg.darken(30),
+      fg = Boolean.fg,
+    },
+    TSVariableBuiltin {
+      fg = Boolean.fg.lighten(20),
     },
     TSParameterReference { fg = TSParameter.fg.darken(20) },
     -- Number         { }, --   a number constant: 234, 0xff
@@ -792,7 +794,6 @@ local theme = lush(function(injected)
     -- TSType               { };    -- For types.
     -- TSTypeBuiltin        { };    -- For builtin types.
     -- TSVariable { }, -- Any variable name that does not have another highlight.
-    -- TSVariableBuiltin    { };    -- Variable names that are defined by the languages, like `this` or `self`.
 
     -- TSTag                { };    -- Tags like html tag names.
     -- TSTagDelimiter       { };    -- Tag delimiter like `<` `>` `/`
