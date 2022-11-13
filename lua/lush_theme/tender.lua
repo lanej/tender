@@ -347,6 +347,9 @@ local theme = lush(function(injected)
     String {
       fg = hsl("#d3b987"),
     },
+    TSStringRegex {
+      fg = hsl("#cc835e"),
+    },
     TSLiteral {
       fg = String.fg.darken(20),
     },
@@ -370,6 +373,12 @@ local theme = lush(function(injected)
     },
     TSPunctBracket {
       fg = hsl("#999999"),
+    },
+    TSPunctSpecial {
+      fg = hsl("#ad7ecc"),
+    },
+    TSConstBuiltin {
+      fg = hsl("#ffaf5f").darken(10),
     },
     TSSymbol {
       fg = hsl("#ffaf5f"),
@@ -662,9 +671,8 @@ local theme = lush(function(injected)
     -- Uncomment and edit if you want more specific syntax highlighting.
 
     -- Constant       { }, -- (preferred) any constant
-    -- String         { }, --   a string constant: "this is a string"
     Character {
-      fg = String.fg.darken(40),
+      fg = hsl("#d39a87"),
     }, --  a character constant: 'c', '\n'
     TSKeyword {
       fg = Keyword.fg.darken(10),
@@ -673,8 +681,8 @@ local theme = lush(function(injected)
       fg = Keyword.fg.darken(20),
     },
     TSKeywordReturn {
-      fg = Boolean.fg,
-    },
+      fg = String.fg.lighten(40),
+    }, --  a character constant: 'c', '\n'
     TSVariableBuiltin {
       fg = Boolean.fg.lighten(20),
     },
@@ -789,7 +797,6 @@ local theme = lush(function(injected)
     -- TSPunctSpecial       { };    -- For special punctutation that does not fall in the catagories before.
     -- TSRepeat             { };    -- For keywords related to loops.
     -- TSString             { };    -- For strings.
-    -- TSStringRegex        { };    -- For regexes.
     -- TSStringEscape       { };    -- For escape characters within a string.
     -- TSSymbol             { };    -- For identifiers referring to symbols or atoms.
     -- TSType               { };    -- For types.
