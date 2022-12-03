@@ -137,6 +137,8 @@ local map = {
   ["text.environment.name"] = "TSEnvironmentName",
 
   ["text.note"] = "TSNote",
+  ["text.diff.delete"] = "DiffDelete",
+  ["text.diff.add"] = "DiffAdd",
   ["text.warning"] = "TSWarning",
   ["text.danger"] = "TSDanger",
 
@@ -552,7 +554,7 @@ local theme = lush(function(injected)
       gui = "bold",
     }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultInformation {
-      fg = Normal.fg,
+      fg = Comment.fg,
       gui = "bold",
     }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultHint {
@@ -594,6 +596,9 @@ local theme = lush(function(injected)
     },
     ALEWarningSign {
       DiagnosticWarn,
+    },
+    DiagnosticVirtualTextInfo {
+      LspDiagnosticsDefaultInformation
     },
 
     -- Comment      { }, -- any comment
@@ -681,7 +686,8 @@ local theme = lush(function(injected)
       fg = Keyword.fg.darken(20),
     },
     TSKeywordReturn {
-      fg = String.fg.lighten(40),
+      fg = TSKeyword.fg.darken(15),
+      gui = "bold",
     }, --  a character constant: 'c', '\n'
     TSVariableBuiltin {
       fg = Boolean.fg.lighten(20),
