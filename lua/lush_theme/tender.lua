@@ -137,8 +137,8 @@ local map = {
   ["text.environment.name"] = "TSEnvironmentName",
 
   ["text.note"] = "TSNote",
-  ["text.diff.delete"] = "DiffDelete",
-  ["text.diff.add"] = "DiffAdd",
+  ["text.diff.delete"] = "diffRemoved",
+  ["text.diff.add"] = "diffAdded",
   ["text.warning"] = "TSWarning",
   ["text.danger"] = "TSDanger",
 
