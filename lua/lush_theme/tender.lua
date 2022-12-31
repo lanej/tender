@@ -604,6 +604,9 @@ local theme = lush(function(injected)
     DiagnosticVirtualTextInfo {
       LspDiagnosticsDefaultInformation
     },
+    Cursor       {
+      bg = hsl("#dddddd"),
+    }, -- character under the cursor
 
     -- Comment      { }, -- any comment
     -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
