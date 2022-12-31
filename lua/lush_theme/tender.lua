@@ -231,6 +231,7 @@ local defaults = {
   TSLiteral = { link = "String", default = true },
   TSURI = { link = "Underlined", default = true },
 
+  TSInlayHint = { link = "InlayHint", default = true },
   TSComment = { link = "Comment", default = true },
   TSNote = { link = "SpecialComment", default = true },
   TSWarning = { link = "Todo", default = true },
@@ -378,6 +379,9 @@ local theme = lush(function(injected)
     },
     TSPunctSpecial {
       fg = hsl("#ad7ecc"),
+    },
+    TSInlayHint {
+      fg = hsl("#ad7ecc").darken(10),
     },
     TSConstBuiltin {
       fg = hsl("#ffaf5f").darken(10),
