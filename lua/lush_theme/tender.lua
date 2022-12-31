@@ -142,7 +142,7 @@ local map = {
   ["text.warning"] = "TSWarning",
   ["text.danger"] = "TSDanger",
 
-  ["todo"] = "TSTodo",
+  ["text.todo"] = "TSTodo",
 
   ["type"] = "TSType",
   ["type.builtin"] = "TSTypeBuiltin",
