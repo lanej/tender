@@ -505,6 +505,9 @@ local theme = lush(function(injected)
     CursorLine {
       bg = hsl("#323232"),
     },
+    Cursor {
+      bg = hsl("#323232").lighten(20),
+    },
     CursorLineNr {
       fg = hsl("#5fd7ff"),
       bg = "NONE",
@@ -604,9 +607,9 @@ local theme = lush(function(injected)
     DiagnosticVirtualTextInfo {
       LspDiagnosticsDefaultInformation
     },
-    Cursor       {
-      bg = hsl("#dddddd"),
-    }, -- character under the cursor
+    InlayHint {
+      fg = colors.teal.darken(40),
+    },
 
     -- Comment      { }, -- any comment
     -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
