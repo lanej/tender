@@ -267,9 +267,6 @@ local theme = lush(function(injected)
     Constant {
       fg = colors.orange,
     },
-    CursorColumn {
-      bg = hsl("#323232"),
-    },
     Directory {
       fg = hsl("#afd7ff"),
     },
@@ -295,6 +292,9 @@ local theme = lush(function(injected)
     },
     Identifier {
       fg = hsl("#afd7ff"),
+    },
+    TSField {
+      fg = Identifier.fg.lighten(20),
     },
     Keyword {
       fg = hsl("#c9d05c"),
@@ -358,9 +358,6 @@ local theme = lush(function(injected)
     },
     Title {
       fg = hsl("#afd7ff"),
-    },
-    TSField {
-      fg = Title.fg.darken(10),
     },
     TSFunction {
       fg = hsl("#00afff").lighten(10),
@@ -505,9 +502,6 @@ local theme = lush(function(injected)
     CursorLine {
       bg = hsl("#323232"),
     },
-    Cursor {
-      bg = hsl("#323232").lighten(20),
-    },
     CursorLineNr {
       fg = hsl("#5fd7ff"),
       bg = "NONE",
@@ -524,6 +518,22 @@ local theme = lush(function(injected)
       fg = colors.fg,
       bg = Pmenu.bg.lighten(20),
       gui = "bold",
+    },
+    NoiceCursor {
+      bg = Pmenu.bg.lighten(20),
+    },
+    NoiceHiddenCursor {
+      bg = colors.bg.lighten(20),
+    },
+    Cursor {
+      bg = Pmenu.bg.lighten(20),
+    },
+    lCursor {
+      bg = Pmenu.bg.lighten(20),
+    },
+    CursorColumn {
+      fg = colors.fg,
+      bg = Pmenu.bg.lighten(20),
     },
     Visual {
       bg = hsl("#4e4e4e"),
@@ -583,19 +593,43 @@ local theme = lush(function(injected)
     DiagnosticUnderlineError {
       DiagnosticError,
     }, -- Used to underline "Error" diagnostics
+    DiagnosticVirtualTextError {
+      DiagnosticError,
+    },
     DiagnosticUnderlineWarn {
       DiagnosticWarn,
     }, -- Used to underline "Warning" diagnostics
+    DiagnosticSignWarn {
+      DiagnosticWarn,
+    },
+    DiagnosticVirtualTextWarn {
+      DiagnosticWarn,
+    },
     DiagnosticUnderlineInfo {
       DiagnosticInfo,
     }, -- Used to underline "Information" diagnostics
     DiagnosticUnderlineHint {
       DiagnosticHint,
     }, -- Used to underline "Hint" diagnostics
+    DiagnositcSignInfo {
+      DiagnosticHint,
+    },
+    DiagnosticVirtualTextInfo {
+      DiagnosticHint,
+    }, -- Used to underline "Hint" diagnostics
+    ALEVirtualTextInfo {
+      DiagnosticHint,
+    }, -- Used to underline "Hint" diagnostics
     ALEError {
       DiagnosticError,
     },
+    ALEVirtualTextError {
+      DiagnosticError,
+    },
     ALEWarning {
+      DiagnosticWarn,
+    },
+    ALEVirtualTextWarning {
       DiagnosticWarn,
     },
     ALEErrorSign {
@@ -608,13 +642,12 @@ local theme = lush(function(injected)
       LspDiagnosticsDefaultInformation
     },
     InlayHint {
-      fg = colors.teal.darken(40),
+      fg = SpecialComment.fg.darken(20),
     },
 
     -- Comment      { }, -- any comment
     -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
     -- Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-    -- Cursor       { }, -- character under the cursor
     -- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
     -- CursorColumn { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
@@ -702,14 +735,13 @@ local theme = lush(function(injected)
     TSVariableBuiltin {
       fg = Boolean.fg.lighten(20),
     },
+    -- TSPunctSpecial       { };    -- For special punctutation that does not fall in the catagories before.
     TSParameterReference { fg = TSParameter.fg.darken(20) },
     -- Number         { }, --   a number constant: 234, 0xff
     -- Boolean        { }, --  a boolean constant: TRUE, false
     -- Float          { }, --    a floating point constant: 2.3e10
 
     -- Identifier     { }, -- (preferred) any variable name
-    -- Function       { }, -- function name (also: methods for classes)
-
     -- Statement      { }, -- (preferred) any statement
     -- Conditional    { }, --  if, then, else, endif, switch, etc.
     -- Repeat         { }, --   for, do, while, etc.
